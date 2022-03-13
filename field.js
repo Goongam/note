@@ -31,7 +31,9 @@
             }
         }
 
+
         //longnotetime, speed 변경함수  export
+
         function changeSpeed(value){
             speed = value;
             console.log("스피드:"+value)

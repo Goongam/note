@@ -1,0 +1,50 @@
+<html>
+<style>
+
+  .item{
+    border:black 2px dotted 
+  }
+  .head{
+    width: 500px;
+  }
+  .option{
+    display: grid;
+    grid-template-columns: 150px 90%;
+    text-align: center;
+  }
+</style>
+<head>
+  
+</head>
+<body>
+    
+  <div class="head">
+    <label id="speedlabel" class="option">
+      속도: 4
+      <input type="range" step="1" min="1" max="10" value="4" id=speedrange></input>
+    </label>
+
+    <label id="longlabel" class="option">
+      롱노트시간: 200 ms
+      <input type="range" step="1" min="1" max="80" value="40" id=longrange></input>
+    </label>
+
+    <label id="longlabel" class="option">
+      실시간 출력
+      <input type="checkbox" id="livedraw" checked="true"></input>
+    </label>
+
+  </div>
+    
+    
+
+    
+    <br>
+    <script src = "option.js" type="module" async></script>
+    <script src = "field.js" type="module" async></script>
+
+<!-- import 관련 https://www.inflearn.com/questions/27444 -->
+
+</body>
+
+</html>

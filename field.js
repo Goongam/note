@@ -1,26 +1,26 @@
 
-        var tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = false;
+        let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
         
-        var width = 600, default_height = 100, height = default_height;
-        //var x=300, y=25;
-        var key = [];
-        var line1 = [0];
-        var line2 = [0];
-        var line3 = [0];
-        var line4 = [0];
-        var line5 = [0];
-        var line6 = [0];
-        var keydown1 = false, presstime1 = 0; 
-        var keydown2 = false, presstime2 = 0;
-        var keydown3 = false, presstime3 = 0;
-        var keydown4 = false, presstime4 = 0;
-        var keydown5 = false, presstime5 = 0;
-        var keydown6 = false, presstime6 = 0;
-        var stop = true;
+        let width = 600, default_height = 500, height = 100;
+        //let x=300, y=25;
+        let key = [];
+        let line1 = [0];
+        let line2 = [0];
+        let line3 = [0];
+        let line4 = [0];
+        let line5 = [0];
+        let line6 = [0];
+        let keydown1 = false, presstime1 = 0; 
+        let keydown2 = false, presstime2 = 0;
+        let keydown3 = false, presstime3 = 0;
+        let keydown4 = false, presstime4 = 0;
+        let keydown5 = false, presstime5 = 0;
+        let keydown6 = false, presstime6 = 0;
+        let stop = true;
         const canvas = document.createElement("canvas");
         canvas.width = width;
         canvas.height = default_height;
-        canvas.style.border = "1px solid black";
+        canvas.style.border = "1px solid white";
         const ctx = canvas.getContext("2d");
         document.body.appendChild(canvas);
 
@@ -31,8 +31,7 @@
             }
         }
 
-
-        //export longnotetime, speed 변경함수
+        //longnotetime, speed 변경함수 export
         function changeSpeed(value){
             speed = value;
             console.log("스피드:"+value)
@@ -60,7 +59,7 @@
 
         function draw() {
             //ctx.save();
-            canvas.height = height+100;
+            //canvas.height = time;
             ctx.fillStyle = "black";            //지우기
             ctx.fillRect(0, 0, width, canvas.height);  //지우기
             
@@ -91,49 +90,18 @@
         }
 
         function drawline1(ctx){
-           var i;
-            i = 1;
             ctx.fillStyle = "white";
-
-            while(line1[i] != null){
-                ctx.fillRect(0, height- line1[i].time, 100, line1[i].height);       
-                i++;
-            }
-            i = 1;
+            line1.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
             ctx.fillStyle = "blue";
-            while(line2[i] != null){
-                ctx.fillRect(100, height- line2[i].time, 100, line2[i].height);
-                i++;
-            }
-            i = 1;
+            line2.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
             ctx.fillStyle = "white";
-            while(line3[i] != null){
-                ctx.fillRect(200, height- line3[i].time, 100, line3[i].height);
-                i++;
-            }
-            i = 1;
-
-            while(line4[i] != null){
-                ctx.fillRect(300, height- line4[i].time, 100, line4[i].height);
-
-                i++;
-            }
-            i = 1;
+            line3.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
             ctx.fillStyle = "blue";
-            while(line5[i] != null){
-                ctx.fillRect(400, height- line5[i].time, 100, line5[i].height);
-
-                i++;
-            }
-            i = 1;
+            line4.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
             ctx.fillStyle = "white";
-            while(line6[i] != null){           
-                    ctx.fillRect(500, height- line6[i].time, 100, line6[i].height);
-
-                i++;
-            }
-            
-            
+            line5.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
+            ctx.fillStyle = "blue";
+            line6.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
         }
         function update(){
             height+=speed;
@@ -142,7 +110,11 @@
         }
     
         document.addEventListener("keydown", function (e) {
-            stop = false;
+            if(stop){ //멈춤상태라면
+                stop = false;
+                canvas.height = 500;
+            }
+            
             if(e.keyCode == '66') {}
 
            if(e.keyCode == '65') {keydown1 = true;}
@@ -152,62 +124,45 @@
            if(e.keyCode == '75') {keydown5 = true;}
            if(e.keyCode == '76') {keydown6 = true;}
            if(e.keyCode == '27') {  //esc
-            stop ? stop = false : stop = true;
+            stop = !stop;
+            canvas.height = time;
             draw();
             }
         });
         document.addEventListener("keyup", function (e) {
             if(e.keyCode == '65') {
                 keydown1 = false;
-                if (presstime1 > longnoteTime)  
-                    line1[line1.length++] = new note(time,presstime1 * speed);
-                else 
-                    line1[line1.length++] = new note(time,15);
+                line1[line1.length++] = presstime1 > longnoteTime ? new note(time,presstime1 * speed) : new note(time,15);
                 presstime1 = 0;
             }
             
             if(e.keyCode == '83') {
                 keydown2 = false;      
-                if (presstime2 > longnoteTime)  
-                    line2[line2.length++] = new note(time,presstime2 * speed);
-                else 
-                    line2[line2.length++] = new note(time,15);    
+                line2[line2.length++] = presstime2 > longnoteTime ? new note(time,presstime2 * speed) : new note(time,15);
                 presstime2 = 0;
             }
 
             if(e.keyCode == '68') {
                 keydown3 = false;      
-                if (presstime3 > longnoteTime)  
-                    line3[line3.length++] = new note(time,presstime3 * speed);
-                else 
-                    line3[line3.length++] = new note(time,15);     
+                line3[line3.length++] = presstime3 > longnoteTime ? new note(time,presstime3 * speed) : new note(time,15);  
                 presstime3 = 0;
             }
 
             if(e.keyCode == '74') {
                 keydown4 = false;      
-                if (presstime4 > longnoteTime)  
-                    line4[line4.length++] = new note(time,presstime4 * speed);
-                else 
-                    line4[line4.length++] = new note(time,15);         
+                line4[line4.length++] = presstime4 > longnoteTime ? new note(time,presstime4 * speed) : new note(time,15);    
                 presstime4 = 0;
             }
 
             if(e.keyCode == '75') {
                 keydown5 = false;      
-                if (presstime5 > longnoteTime)  
-                    line5[line5.length++] = new note(time,presstime5 * speed);
-                else 
-                    line5[line5.length++] = new note(time,15);           
+                line5[line5.length++] = presstime5 > longnoteTime ? new note(time,presstime5 * speed) : new note(time,15);      
                 presstime5 = 0;
             }
 
             if(e.keyCode == '76') {
                 keydown6 = false;      
-                if (presstime6 > longnoteTime)  
-                    line6[line6.length++] = new note(time,presstime6 * speed);
-                else 
-                    line6[line6.length++] = new note(time,15);     
+                line6[line6.length++] = presstime6 > longnoteTime ? new note(time,presstime6 * speed) : new note(time,15);
                 presstime6 = 0;
             }
             

@@ -1,5 +1,5 @@
 
-import {changeSpeed,changelong,changelivedraw} from "./field.js"
+import {changeSpeed,changelong,changelivedraw, changeBTN} from "./field.js"
 
 
 const text = document.createTextNode("\u00A0");    
@@ -14,14 +14,24 @@ speedRange.oninput = function(){
  
 }
 
+
+const btnlist = document.getElementById("btn");
+btnlist.onclick = function(e){
+    changeBTN(e.target.value);
+}
+
+
+
+
+
 const longRange = document.getElementById("longrange");
 const longLabel = document.getElementById("longlabel");
-
 
 longRange.oninput = function(){
 
     longLabel.childNodes[0].data = "롱노트시간: "+this.value*5+"ms"
     changelong(parseInt(this.value))
+    console.log(btn)
 }
 
 const livedraw = document.getElementById("livedraw");
@@ -29,3 +39,6 @@ const livedraw = document.getElementById("livedraw");
 livedraw.onclick = function(){
     changelivedraw(this.checked)
 }
+
+
+

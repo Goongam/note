@@ -3,6 +3,7 @@
         
         let width = 600, default_height = 500, height = 100;
         //let x=300, y=25;
+        let currentBTN = 4;
         let key = [];
         let line1 = [0];
         let line2 = [0];
@@ -41,9 +42,13 @@
             console.log("롱노트:"+value)
         }
         function changelivedraw(value){
-            livedraw = value
+            livedraw = value;
         }
-        export {changeSpeed,changelong,changelivedraw}
+        function changeBTN(value){
+            currentBTN = value;
+            console.log("현재 키: "+currentBTN);
+        }
+        export {changeSpeed,changelong,changelivedraw,changeBTN}
 
         setInterval(function () {
             
@@ -108,59 +113,64 @@
             time += speed;
             pressnote();
         }
-    
+        
+        let downkey;
         document.addEventListener("keydown", function (e) {
+            downkey = e.key.toLowerCase();
             if(stop){ //멈춤상태라면
                 stop = false;
                 canvas.height = 500;
             }
-            
-            if(e.keyCode == '66') {}
+            console.log(downkey);
+            if(downkey == '66') {}
 
-           if(e.keyCode == '65') {keydown1 = true;}
-           if(e.keyCode == '83') {keydown2 = true;}
-           if(e.keyCode == '68') {keydown3 = true;}
-           if(e.keyCode == '74') {keydown4 = true;}
-           if(e.keyCode == '75') {keydown5 = true;}
-           if(e.keyCode == '76') {keydown6 = true;}
-           if(e.keyCode == '27') {  //esc
+           if(downkey == 'a') {keydown1 = true;}
+           if(downkey == 's') {keydown2 = true;}
+           if(downkey == 'd') {keydown3 = true;}
+           if(downkey == 'l') {keydown4 = true;}
+           if(downkey == ';') {keydown5 = true;}
+           if(downkey == '\'') {keydown6 = true;}
+           if(downkey == 'escape') {  //esc
             stop = !stop;
             canvas.height = time;
             draw();
             }
         });
+
+        let upkey;
         document.addEventListener("keyup", function (e) {
-            if(e.keyCode == '65') {
+            upkey = e.key.toLowerCase();
+            if(upkey == 'a') {
                 keydown1 = false;
                 line1[line1.length++] = presstime1 > longnoteTime ? new note(time,presstime1 * speed) : new note(time,15);
                 presstime1 = 0;
             }
-            
-            if(e.keyCode == '83') {
+
+            if(upkey == 's') {
                 keydown2 = false;      
                 line2[line2.length++] = presstime2 > longnoteTime ? new note(time,presstime2 * speed) : new note(time,15);
                 presstime2 = 0;
             }
 
-            if(e.keyCode == '68') {
+            if(upkey == 'd') {
                 keydown3 = false;      
                 line3[line3.length++] = presstime3 > longnoteTime ? new note(time,presstime3 * speed) : new note(time,15);  
                 presstime3 = 0;
             }
 
-            if(e.keyCode == '74') {
+            if(upkey == 'l') {
                 keydown4 = false;      
                 line4[line4.length++] = presstime4 > longnoteTime ? new note(time,presstime4 * speed) : new note(time,15);    
                 presstime4 = 0;
             }
 
-            if(e.keyCode == '75') {
+            if(upkey == ';') {
                 keydown5 = false;      
                 line5[line5.length++] = presstime5 > longnoteTime ? new note(time,presstime5 * speed) : new note(time,15);      
                 presstime5 = 0;
             }
 
-            if(e.keyCode == '76') {
+            if(upkey == '\'') {
                 keydown6 = false;      
                 line6[line6.length++] = presstime6 > longnoteTime ? new note(time,presstime6 * speed) : new note(time,15);
                 presstime6 = 0;

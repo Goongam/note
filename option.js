@@ -15,15 +15,6 @@ speedRange.oninput = function(){
 }
 
 
-const btnlist = document.getElementById("btn");
-btnlist.onclick = function(e){
-    changeBTN(e.target.value);
-}
-
-
-
-
-
 const longRange = document.getElementById("longrange");
 const longLabel = document.getElementById("longlabel");
 
@@ -34,11 +25,18 @@ longRange.oninput = function(){
     console.log(btn)
 }
 
-const livedraw = document.getElementById("livedraw");
-
-livedraw.onclick = function(){
-    changelivedraw(this.checked)
+const btnlist = document.getElementById("btn");
+btnlist.onclick = function(e){
+    changeBTN(e.target.value);
 }
+
+
+
+// const livedraw = document.getElementById("livedraw");
+
+// livedraw.onclick = function(){
+//     changelivedraw(this.checked)
+// }
 
 
 

@@ -3,20 +3,29 @@
         
         let width = 600, default_height = 500, height = 100;
         //let x=300, y=25;
-        let currentBTN = 4;
-        let key = [];
-        let line1 = [0];
-        let line2 = [0];
-        let line3 = [0];
-        let line4 = [0];
-        let line5 = [0];
-        let line6 = [0];
-        let keydown1 = false, presstime1 = 0; 
-        let keydown2 = false, presstime2 = 0;
-        let keydown3 = false, presstime3 = 0;
-        let keydown4 = false, presstime4 = 0;
-        let keydown5 = false, presstime5 = 0;
-        let keydown6 = false, presstime6 = 0;
+        let currentBTN = 8;
+
+        let preset = {
+            4:['a','s',';','\''],
+            5:['a','s','d','l',';','\''],
+            6:['a','s','d','l',';','\''],
+            8:['q','w','e','7','8','9',' ','0']
+        }
+        
+
+        //let key = [];
+        // let line1 = [0];
+        // let line2 = [0];
+        // let line3 = [0];
+        // let line4 = [0];
+        // let line5 = [0];
+        // let line6 = [0];
+        // let keydown1 = false, presstime1 = 0; 
+        // let keydown2 = false, presstime2 = 0;
+        // let keydown3 = false, presstime3 = 0;
+        // let keydown4 = false, presstime4 = 0;
+        // let keydown5 = false, presstime5 = 0;
+        // let keydown6 = false, presstime6 = 0;
         let stop = true;
         const canvas = document.createElement("canvas");
         canvas.width = width;
@@ -24,6 +33,16 @@
         canvas.style.border = "1px solid white";
         const ctx = canvas.getContext("2d");
         document.body.appendChild(canvas);
+
+        class key{
+            notes = [0];
+            keydown= false;
+            presstime= 0;
+        }
+        let line = [];
+        for(let i = 0; i < 8; i++){
+            line.push(new key());
+        }
 
         class note {
             constructor(time, height){
@@ -74,39 +93,31 @@
             
         }
         function pressnote(){
-            if(keydown1){
-                presstime1++;
-            }
-            if(keydown2){
-                presstime2++;
-            }
-            if(keydown3){
-                presstime3++;
-            }
-            if(keydown4){
-                presstime4++;
-            }
-            if(keydown5){
-                presstime5++;
-            }
-            if(keydown6){
-                presstime6++;
-            }
+          
+            line.map((li) => {
+                if(li.keydown) li.presstime++
+            });
         }
 
         function drawline1(ctx){
+            ctx.fillStyle = "red";
+            line[6].notes.map((note)=> ctx.fillRect(0, height- note.time, 300, note.height) );
+            line[7].notes.map((note)=> ctx.fillRect(300, height- note.time, 300, note.height) );
+
             ctx.fillStyle = "white";
-            line1.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
+            line[0].notes.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
             ctx.fillStyle = "blue";
-            line2.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
+            line[1].notes.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
             ctx.fillStyle = "white";
-            line3.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
+            line[2].notes.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
             ctx.fillStyle = "blue";
-            line4.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
+            line[3].notes.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
             ctx.fillStyle = "white";
-            line5.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
+            line[4].notes.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
             ctx.fillStyle = "blue";
-            line6.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
+            line[5].notes.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
+            
+           
         }
         function update(){
             height+=speed;
@@ -124,12 +135,14 @@
             console.log(downkey);
             if(downkey == '66') {}
 
-           if(downkey == 'a') {keydown1 = true;}
-           if(downkey == 's') {keydown2 = true;}
-           if(downkey == 'd') {keydown3 = true;}
-           if(downkey == 'l') {keydown4 = true;}
-           if(downkey == ';') {keydown5 = true;}
-           if(downkey == '\'') {keydown6 = true;}
+           if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
+           if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
+           if(downkey == preset[currentBTN][2]) {line[2].keydown = true;}
+           if(downkey == preset[currentBTN][3]) {line[3].keydown = true;}
+           if(downkey == preset[currentBTN][4] && currentBTN != 4) {line[4].keydown = true;}
+           if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
+           if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
+           if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
            if(downkey == 'escape') {  //esc
             stop = !stop;
             canvas.height = time;
@@ -137,43 +150,19 @@
             }
         });
 
+        function keyup(line){
+            line.keydown = false;
+            line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed) : new note(time,15));
+            line.presstime = 0;
+        }
+
         let upkey;
         document.addEventListener("keyup", function (e) {
             upkey = e.key.toLowerCase();
-            if(upkey == 'a') {
-                keydown1 = false;
-                line1[line1.length++] = presstime1 > longnoteTime ? new note(time,presstime1 * speed) : new note(time,15);
-                presstime1 = 0;
-            }
-
-            if(upkey == 's') {
-                keydown2 = false;      
-                line2[line2.length++] = presstime2 > longnoteTime ? new note(time,presstime2 * speed) : new note(time,15);
-                presstime2 = 0;
-            }
-
-            if(upkey == 'd') {
-                keydown3 = false;      
-                line3[line3.length++] = presstime3 > longnoteTime ? new note(time,presstime3 * speed) : new note(time,15);  
-                presstime3 = 0;
-            }
-
-            if(upkey == 'l') {
-                keydown4 = false;      
-                line4[line4.length++] = presstime4 > longnoteTime ? new note(time,presstime4 * speed) : new note(time,15);    
-                presstime4 = 0;
-            }
-
-            if(upkey == ';') {
-                keydown5 = false;      
-                line5[line5.length++] = presstime5 > longnoteTime ? new note(time,presstime5 * speed) : new note(time,15);      
-                presstime5 = 0;
-            }
-
-            if(upkey == '\'') {
-                keydown6 = false;      
-                line6[line6.length++] = presstime6 > longnoteTime ? new note(time,presstime6 * speed) : new note(time,15);
-                presstime6 = 0;
-            }
             
+            for(let i = 0; i < 8 ; i++){
+               
+                if(upkey == preset[currentBTN][i]) keyup(line[i]);
+            }
+
         });

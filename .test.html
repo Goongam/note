@@ -2,23 +2,23 @@
 
 <body>
     <script>
-        class note {
-            time = 0;
-            len = 0;
-            constructor(time, len){
-                this.time = time;
-                this.len = len;
-            }
-            
-        }
+       let a = {
+           line: [],
+           keydown: false,
+           presstime: 0,
+       }
+       class b{
+           note = [];
+           keydown= false;
+           presstime= 0;
+       }
+        line = [];
+       for(i = 0; i < 8; i++){
+        line.push(new b());
+       }
+       console.log(line);
 
-        a = new note();
-        b = new note(1,2);
-        console.log(b.time);
-        console.log(b.len);
-        if(b.len){
-            console.log("d");
-        }
+       console.log( 1 < 0 ? "a" : "b");
     </script>
 
 

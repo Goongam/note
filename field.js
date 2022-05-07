@@ -1,9 +1,10 @@
+        import {isPresetInput} from "./option.js";
 
         let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
         
         let width = 600, default_height = 500, height = 100;
         //let x=300, y=25;
-        let currentBTN = 8;
+        let currentBTN = 6;
 
         let preset = {
             4:['a','s',';','\''],
@@ -12,7 +13,7 @@
             8:['q','w','e','7','8','9',' ','0']
         }
         
-
+      
         //let key = [];
         // let line1 = [0];
         // let line2 = [0];
@@ -27,12 +28,12 @@
         // let keydown5 = false, presstime5 = 0;
         // let keydown6 = false, presstime6 = 0;
         let stop = true;
-        const canvas = document.createElement("canvas");
+        const canvas = document.getElementById("field");
         canvas.width = width;
         canvas.height = default_height;
         canvas.style.border = "1px solid white";
         const ctx = canvas.getContext("2d");
-        document.body.appendChild(canvas);
+        //document.body.appendChild(canvas);
 
         class key{
             notes = [0];
@@ -66,8 +67,21 @@
         function changeBTN(value){
             currentBTN = value;
             console.log("현재 키: "+currentBTN);
+            
         }
-        export {changeSpeed,changelong,changelivedraw,changeBTN}
+        function changePreset(changingValue, inputvalue){
+            preset[currentBTN][changingValue] = inputvalue;
+            console.log("변경: "+preset[currentBTN])
+            console.log(line);
+            
+        }
+        function escapeStop(){
+            stop = true;
+            canvas.height = time;
+            draw();
+        }
+        export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
+        currentBTN, changePreset, escapeStop}
 
         setInterval(function () {
             
@@ -128,6 +142,10 @@
         let downkey;
         document.addEventListener("keydown", function (e) {
             downkey = e.key.toLowerCase();
+            if(isPresetInput) return;
+            
+
+            
             if(stop){ //멈춤상태라면
                 stop = false;
                 canvas.height = 500;
@@ -135,19 +153,18 @@
             console.log(downkey);
             if(downkey == '66') {}
 
-           if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
-           if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
-           if(downkey == preset[currentBTN][2]) {line[2].keydown = true;}
-           if(downkey == preset[currentBTN][3]) {line[3].keydown = true;}
-           if(downkey == preset[currentBTN][4] && currentBTN != 4) {line[4].keydown = true;}
-           if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
-           if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
-           if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
-           if(downkey == 'escape') {  //esc
-            stop = !stop;
-            canvas.height = time;
-            draw();
+            if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
+            if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
+            if(downkey == preset[currentBTN][2]) {line[2].keydown = true;}
+            if(downkey == preset[currentBTN][3]) {line[3].keydown = true;}
+            if(downkey == preset[currentBTN][4] && currentBTN != 4) {line[4].keydown = true;}
+            if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
+            if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
+            if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
+            if(downkey == 'escape') {  //esc
+                escapeStop();
             }
+            
         });
 
         function keyup(line){
@@ -158,11 +175,13 @@
 
         let upkey;
         document.addEventListener("keyup", function (e) {
-            upkey = e.key.toLowerCase();
-            
+            if(isPresetInput) return;
+
+            upkey = e.key.toLowerCase();            
             for(let i = 0; i < 8 ; i++){
-               
+            
                 if(upkey == preset[currentBTN][i]) keyup(line[i]);
             }
+            
 
         });

@@ -1,5 +1,6 @@
 
-import {changeSpeed,changelong,changelivedraw, changeBTN} from "./field.js"
+import {changeSpeed,changelong,changelivedraw, changeBTN, 
+    preset, currentBTN, changePreset, escapeStop} from "./field.js"
 
 
 const text = document.createTextNode("\u00A0");    
@@ -28,6 +29,29 @@ longRange.oninput = function(){
 const btnlist = document.getElementById("btn");
 btnlist.onclick = function(e){
     changeBTN(e.target.value);
+}
+
+export let isPresetInput = false;
+let changingValue = 0;
+const presetTag = document.getElementById("preset");
+const presetInputTag = document.getElementById("presetInput");
+presetTag.onclick = function(e){
+    console.log(preset[currentBTN][e.target.value])
+    changingValue = e.target.value;
+    presetInputTag.style.display = "block";
+    isPresetInput = true;
+    escapeStop();
+    
+    document.addEventListener("keyup",presetInputFunc)
+}
+
+function presetInputFunc(e){
+    let inputkey = e.key.toLowerCase();
+    e.target.innerText = inputkey;
+    changePreset(changingValue, inputkey);
+    presetInputTag.style.display = "none";
+    document.removeEventListener("keyup",presetInputFunc);
+    isPresetInput = false;
 }
 
 

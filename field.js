@@ -7,10 +7,10 @@
         let currentBTN = 6;
 
         let preset = {
-            4:['a','s',';','\''],
-            5:['a','s','d','l',';','\''],
-            6:['a','s','d','l',';','\''],
-            8:['q','w','e','7','8','9',' ','0']
+            4:['A','S',';','\''],
+            5:['A','S','D','L',';','\''],
+            6:['A','S','D','L',';','\''],
+            8:['Q','W','E','7','8','9',' ','0']
         }
         
       
@@ -70,9 +70,10 @@
             
         }
         function changePreset(changingValue, inputvalue){
+            //console.log("inputvalue:"+inputvalue);
             preset[currentBTN][changingValue] = inputvalue;
             console.log("변경: "+preset[currentBTN])
-            console.log(line);
+            //console.log(line);
             
         }
         function escapeStop(){
@@ -141,7 +142,7 @@
         
         let downkey;
         document.addEventListener("keydown", function (e) {
-            downkey = e.key.toLowerCase();
+            downkey = e.key.toUpperCase();
             if(isPresetInput) return;
             
 
@@ -161,7 +162,7 @@
             if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
             if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
             if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
-            if(downkey == 'escape') {  //esc
+            if(downkey == 'ESCAPE') {  //esc
                 escapeStop();
             }
             
@@ -177,7 +178,7 @@
         document.addEventListener("keyup", function (e) {
             if(isPresetInput) return;
 
-            upkey = e.key.toLowerCase();            
+            upkey = e.key.toUpperCase();            
             for(let i = 0; i < 8 ; i++){
             
                 if(upkey == preset[currentBTN][i]) keyup(line[i]);

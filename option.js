@@ -32,26 +32,57 @@ btnlist.onclick = function(e){
 }
 
 export let isPresetInput = false;
-let changingValue = 0;
+let changingIndex = 0; //바꾸는 버튼의 index
+let changingBTN = null;
 const presetTag = document.getElementById("preset");
 const presetInputTag = document.getElementById("presetInput");
 presetTag.onclick = function(e){
-    console.log(preset[currentBTN][e.target.value])
-    changingValue = e.target.value;
+        
+    // console.log(preset[currentBTN][e.target.value])
+    changingBTN = e.target;
+    changingIndex = e.target.value;
     presetInputTag.style.display = "block";
     isPresetInput = true;
-    escapeStop();
+    escapeStop(); //field정지
     
     document.addEventListener("keyup",presetInputFunc)
 }
 
 function presetInputFunc(e){
-    let inputkey = e.key.toLowerCase();
-    e.target.innerText = inputkey;
-    changePreset(changingValue, inputkey);
+    let inputkey = e.key.toUpperCase();
+    if (inputkey != "ESCAPE"){
+        
+        changingBTN.innerText = (inputkey === ' ' ? "SPACEBAR" : inputkey);
+        
+        changePreset(changingIndex, inputkey);
+    }
+    
     presetInputTag.style.display = "none";
     document.removeEventListener("keyup",presetInputFunc);
     isPresetInput = false;
+}
+
+//마우스on->버튼 활성화/비활성화
+presetTag.onmouseenter = function(e){
+    // this.children[0].children[0].disabled = false
+    for(let i =0; i < this.childElementCount ; i++){
+        for(let j = 0; j < this.children[i].childElementCount; j++){
+            this.children[i].children[j].disabled = false;
+        }
+    }
+}
+presetTag.onmouseleave = function(e){
+    for(let i =0; i < this.childElementCount ; i++){
+        for(let j = 0; j < this.children[i].childElementCount; j++){
+            this.children[i].children[j].disabled = true;
+        }
+    }
+}
+
+const p6 = document.getElementById("p6");
+console.log(p6.children)
+for(let i = 0; i < p6.childElementCount ; i++){
+    p6.children[i].innerText = preset[6][i];
 }
 
 
@@ -61,6 +92,4 @@ function presetInputFunc(e){
 // livedraw.onclick = function(){
 //     changelivedraw(this.checked)
 // }
-
-
 

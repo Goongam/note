@@ -2,6 +2,7 @@
 <style>
   body{
     background-color: black;
+    color : white;
   }
   #container{
     margin: 0 auto;
@@ -29,14 +30,25 @@
   
   #presetInput{
     position: absolute;
-    color: white;
     width: 100%;
     height: 300px;
     background-color: gray;
     top: 10%;
-    font-size: 50px;
-    text-align: center;
     display: none;
+    border: 1px solid white;
+  }
+  #presetInput > div{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    text-align: center;
+  }
+  #preset > div > button{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
   }
   
   
@@ -74,13 +86,13 @@
     
     <br>
     <div id="preset">
-      <div id="p6">
-        <button value='0'>a</button>
-        <button value='1'>s</button>
-        <button value='2'>d</button>
-        <button value='3'>l</button>
-        <button value='4'>;</button>
-        <button value='5'>'</button><br>
+      <div id="p6" >
+        <button value='0' disabled="true" >a</button>
+        <button value='1' disabled="true" >s</button>
+        <button value='2' disabled="true" >d</button>
+        <button value='3' disabled="true" >l</button>
+        <button value='4' disabled="true" >;</button>
+        <button value='5' disabled="true" >'</button><br>
       </div>
     </div>
     
@@ -95,7 +107,10 @@
 </div>
 
 <div id="presetInput">
-  키를 입력하세요
+ <div>
+  사용할 키를 입력하세요<br>
+  ESC를 누르면 취소합니다
+ </div>
 </div>
 
 </body>

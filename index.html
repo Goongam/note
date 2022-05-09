@@ -21,12 +21,7 @@
     grid-template-columns: 150px 90%;
     text-align: center;
   }
-  #preset > #p6 > button{
-    margin-right: -7px;
-    width: 102px;
-    position: relative;
-    left: -2px;    
-  }
+  
   
   #presetInput{
     position: absolute;
@@ -50,7 +45,42 @@
     color: black;
     border: 1px solid black;
   }
-  
+  #preset > #p4 > button{
+    margin-right: -7px;
+    width: 152px;
+    position: relative;
+    left: -1px;  
+  }
+  #preset > #p5 > button{
+    margin-right: -7px;
+    width: 102px;
+    position: relative;
+    left: -2px;    
+  }
+  #preset > #p6 > button{
+    margin-right: -7px;
+    width: 102px;
+    position: relative;
+    left: -2px;    
+  }
+  #preset > #p8 > button{
+    margin-right: -7px;
+    /* line-height: 20px; */
+    width: 102px;
+    position: relative;
+    left: -2px;
+   
+  }
+  #preset > #p8 > button:not(.trigger){
+    /* line-height: 20px; */
+    top : 4px;
+
+  }
+  #preset > #p8 > button.trigger{
+    /* line-height: 20px; */
+    width: 303px;
+
+  }
   
 </style>
 <head>
@@ -75,7 +105,7 @@
       실시간 출력
       <input type="checkbox" id="livedraw" checked="true"></input>
     </label> -->
-    <div id="btn">    
+    <div id="changekeyBTN">    
       <button class="changeBTN" value=4>4</button>
       <button class="changeBTN" value=5>5</button>
       <button class="changeBTN" value=6>6</button>
@@ -85,14 +115,43 @@
   </div>
     
     <br>
-    <div id="preset">
-      <div id="p6" >
-        <button value='0' disabled="true" >a</button>
-        <button value='1' disabled="true" >s</button>
-        <button value='2' disabled="true" >d</button>
-        <button value='3' disabled="true" >l</button>
-        <button value='4' disabled="true" >;</button>
-        <button value='5' disabled="true" >'</button><br>
+    <div id="preset" >
+      <div id="p4" style="display: block;">
+        <button value='0' disabled="true" >-</button>
+        <button value='1' disabled="true" >-</button>
+        <button value='2' disabled="true" >-</button>
+        <button value='3' disabled="true" >-</button><br>
+      </div>
+
+      <div id="p5" style="display: none;">
+        <button value='0' disabled="true" >-</button>
+        <button value='1' disabled="true" >-</button>
+        <button value='2' disabled="true" >-</button>
+        <button value='3' disabled="true" >-</button>
+        <button value='4' disabled="true" >-</button>
+        <button value='5' disabled="true" >-</button><br>
+      </div>
+
+      <div id="p6" style="display: none;">
+        <button value='0' disabled="true" >-</button>
+        <button value='1' disabled="true" >-</button>
+        <button value='2' disabled="true" >-</button>
+        <button value='3' disabled="true" >-</button>
+        <button value='4' disabled="true" >-</button>
+        <button value='5' disabled="true" >-</button><br>
+      </div>
+
+      <div id="p8" style="display: none;">
+        
+        <button value='0' disabled="true" class="p8_btn">-</button>
+        <button value='1' disabled="true" class="p8_btn">-</button>
+        <button value='2' disabled="true" class="p8_btn">-</button>
+        <button value='3' disabled="true" class="p8_btn">-</button>
+        <button value='4' disabled="true" class="p8_btn">-</button>
+        <button value='5' disabled="true" class="p8_btn">-</button><br>
+        <button value='6' disabled="true" class="p8_btn trigger">-</button>
+        <button value='7' disabled="true" class="p8_btn trigger">-</button><br>
+        
       </div>
     </div>
     

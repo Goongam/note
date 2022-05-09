@@ -4,13 +4,13 @@
         
         let width = 600, default_height = 500, height = 100;
         //let x=300, y=25;
-        let currentBTN = 6;
+        let currentBTN = 4;
 
         let preset = {
             4:['A','S',';','\''],
             5:['A','S','D','L',';','\''],
             6:['A','S','D','L',';','\''],
-            8:['Q','W','E','7','8','9',' ','0']
+            8:['Q','W','E','7','8','9',' ','ARROWRIGHT']
         }
         
       

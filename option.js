@@ -26,11 +26,18 @@ longRange.oninput = function(){
     console.log(btn)
 }
 
-const btnlist = document.getElementById("btn");
+//키 변경 버튼 이벤트
+const btnlist = document.getElementById("changekeyBTN");
 btnlist.onclick = function(e){
     changeBTN(e.target.value);
+    for(let i = 0; i < presetTag.childElementCount ; i++){
+        presetTag.children[i].style.display = "none";
+        if(presetTag.children[i].id === ("p"+currentBTN))
+            presetTag.children[i].style.display = "block";
+    }
 }
 
+//프리셋 설정 이벤트
 export let isPresetInput = false;
 let changingIndex = 0; //바꾸는 버튼의 index
 let changingBTN = null;
@@ -79,10 +86,22 @@ presetTag.onmouseleave = function(e){
     }
 }
 
+const p4 = document.getElementById("p4");
+for(let i = 0; i < p4.childElementCount ; i++){
+    p4.children[i].innerText = preset[4][i];
+}
+const p5 = document.getElementById("p5");
+for(let i = 0; i < p5.childElementCount ; i++){
+    p5.children[i].innerText = preset[5][i];
+}
 const p6 = document.getElementById("p6");
-console.log(p6.children)
 for(let i = 0; i < p6.childElementCount ; i++){
     p6.children[i].innerText = preset[6][i];
+}
+const p8 = document.getElementsByClassName("p8_btn");
+for(let i = 0; i < p8.length ; i++){
+    if(preset[8][i] === ' ') p8[i].innerText = "SPACEBAR";
+    else p8[i].innerText = preset[8][i];
 }
 
 

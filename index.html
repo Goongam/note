@@ -1,0 +1,118 @@
+<html>
+<style>
+  body{
+    background-color: black;
+    color : white;
+  }
+  #container{
+    margin: 0 auto;
+    width: 700px;
+    
+  }
+  .item{
+    border:black 2px dotted 
+  }
+  .head{
+    width: 500px;
+    color: white;
+  }
+  .option{
+    display: grid;
+    grid-template-columns: 150px 90%;
+    text-align: center;
+  }
+  #preset > #p6 > button{
+    margin-right: -7px;
+    width: 102px;
+    position: relative;
+    left: -2px;    
+  }
+  
+  #presetInput{
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background-color: gray;
+    top: 10%;
+    display: none;
+    border: 1px solid white;
+  }
+  #presetInput > div{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    text-align: center;
+  }
+  #preset > div > button{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+  
+  
+</style>
+<head>
+  <script src = "option.js" type="module" async></script>
+</head>
+<body>
+
+  
+<div id="container">
+  <div class="head">
+    <label id="speedlabel" class="option">
+      속도: 4
+      <input type="range" step="1" min="1" max="10" value="4" id=speedrange></input>
+    </label>
+
+    <label id="longlabel" class="option">
+      롱노트시간: 200 ms
+      <input type="range" step="1" min="1" max="80" value="40" id=longrange></input>
+    </label>
+
+    <!-- <label id="longlabel" class="option">
+      실시간 출력
+      <input type="checkbox" id="livedraw" checked="true"></input>
+    </label> -->
+    <div id="btn">    
+      <button class="changeBTN" value=4>4</button>
+      <button class="changeBTN" value=5>5</button>
+      <button class="changeBTN" value=6>6</button>
+      <button class="changeBTN" value=8>8</button>
+    </div>
+
+  </div>
+    
+    <br>
+    <div id="preset">
+      <div id="p6" >
+        <button value='0' disabled="true" >a</button>
+        <button value='1' disabled="true" >s</button>
+        <button value='2' disabled="true" >d</button>
+        <button value='3' disabled="true" >l</button>
+        <button value='4' disabled="true" >;</button>
+        <button value='5' disabled="true" >'</button><br>
+      </div>
+    </div>
+    
+    
+    <div id="cv-container">
+      <canvas id="field"></canvas>
+    </div>
+    
+    <!-- <script src = "field.js" type="module" async></script> -->
+  
+<!-- import 관련 https://www.inflearn.com/questions/27444 -->
+</div>
+
+<div id="presetInput">
+ <div>
+  사용할 키를 입력하세요<br>
+  ESC를 누르면 취소합니다
+ </div>
+</div>
+
+</body>
+
+</html>

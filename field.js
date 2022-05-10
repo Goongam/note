@@ -150,7 +150,7 @@
             downkey = e.key.toUpperCase();
             if(isPresetInput) return;
             
-            if(stop && preset[currentBTN].indexOf(downkey) != -1){ //멈춤상태, 입력==프리셋키
+            if(stop && preset[currentBTN].includes(downkey)){ //멈춤상태, 입력==프리셋키
                 onliveshow()
             }
             console.log(downkey);

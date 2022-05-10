@@ -58,9 +58,7 @@ presetTag.onclick = function(e){
 function presetInputFunc(e){
     let inputkey = e.key.toUpperCase();
     if (inputkey != "ESCAPE"){
-        
         changingBTN.innerText = (inputkey === ' ' ? "SPACEBAR" : inputkey);
-        
         changePreset(changingIndex, inputkey);
     }
     

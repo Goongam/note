@@ -2,7 +2,7 @@
 
         let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
         
-        let width = 600, default_height = 500, height = 100;
+        let width = 600, default_height = 500, height = 0;
         //let x=300, y=25;
         let currentBTN = 4;
 
@@ -140,16 +140,18 @@
             pressnote();
         }
         
+        function onliveshow(){
+            stop = false;
+            canvas.height = 500;
+        }
+
         let downkey;
         document.addEventListener("keydown", function (e) {
             downkey = e.key.toUpperCase();
             if(isPresetInput) return;
             
-
-            
-            if(stop){ //멈춤상태라면
-                stop = false;
-                canvas.height = 500;
+            if(stop && preset[currentBTN].indexOf(downkey) != -1){ //멈춤상태, 입력==프리셋키
+                onliveshow()
             }
             console.log(downkey);
             if(downkey == '66') {}

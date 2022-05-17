@@ -1,4 +1,5 @@
         import {isPresetInput} from "./option.js";
+        import {drawline} from "./drawline.js";
 
         let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
         
@@ -82,7 +83,7 @@
             draw();
         }
         export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
-        currentBTN, changePreset, escapeStop}
+        currentBTN, changePreset, escapeStop, ctx, line, height}
 
         setInterval(function () {
             
@@ -115,23 +116,23 @@
         }
 
         function drawline1(ctx){
-            ctx.fillStyle = "red";
-            line[6].notes.map((note)=> ctx.fillRect(0, height- note.time, 300, note.height) );
-            line[7].notes.map((note)=> ctx.fillRect(300, height- note.time, 300, note.height) );
+            drawline[currentBTN]();
+            // ctx.fillStyle = "red";
+            // line[6].notes.map((note)=> ctx.fillRect(0, height- note.time, 300, note.height) );
+            // line[7].notes.map((note)=> ctx.fillRect(300, height- note.time, 300, note.height) );
 
-            ctx.fillStyle = "white";
-            line[0].notes.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
-            ctx.fillStyle = "blue";
-            line[1].notes.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
-            ctx.fillStyle = "white";
-            line[2].notes.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
-            ctx.fillStyle = "blue";
-            line[3].notes.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
-            ctx.fillStyle = "white";
-            line[4].notes.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
-            ctx.fillStyle = "blue";
-            line[5].notes.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
-            
+            // ctx.fillStyle = "white";
+            // line[0].notes.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
+            // ctx.fillStyle = "blue";
+            // line[1].notes.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
+            // ctx.fillStyle = "white";
+            // line[2].notes.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
+            // ctx.fillStyle = "blue";
+            // line[3].notes.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
+            // ctx.fillStyle = "white";
+            // line[4].notes.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
+            // ctx.fillStyle = "blue";
+            // line[5].notes.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
            
         }
         function update(){

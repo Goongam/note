@@ -8,12 +8,34 @@
         let currentBTN = 4;
 
         let preset = {
-            4:['A','S',';','\''],
-            5:['A','S','D','L',';','\''],
-            6:['A','S','D','L',';','\''],
-            8:['Q','W','E','7','8','9',' ','ARROWRIGHT']
+            4:['A0','S0',';0','\'0'],
+            5:['A0','S0','D0','L0',';0','\'0'],
+            6:['A0','S0','D0','L0',';0','\'0'],
+            8:['Q0','W0','E0','70','80','90',' 0','ARROWRIGHT0']
         }
-        
+        let downshift = false;
+        let Unshift = {
+            ":0":";0",
+            "\"0":"'0",
+            "<0":",0",
+            ">0":".0",
+            "?0":"/0",
+            "{0":"[0",
+            "}0":"]0",
+            "~0":"`0",
+            "!0":"10",
+            "@0":"20",
+            "#0":"30",
+            "$0":"40",
+            "%0":"50",
+            "^0":"60",
+            "&0":"70",
+            "*0":"80",
+            "(0":"90",
+            ")0":"00",
+            "_0":"-0",
+            
+        }
       
         //let key = [];
         // let line1 = [0];
@@ -71,10 +93,10 @@
             
         }
         function changePreset(changingValue, inputvalue){
-            //console.log("inputvalue:"+inputvalue);
+            
             preset[currentBTN][changingValue] = inputvalue;
             console.log("변경: "+preset[currentBTN])
-            //console.log(line);
+            
             
         }
         function escapeStop(){
@@ -83,7 +105,7 @@
             draw();
         }
         export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
-        currentBTN, changePreset, escapeStop, ctx, line, height}
+        currentBTN, changePreset, escapeStop,Unshift, ctx, line, height}
 
         setInterval(function () {
             
@@ -117,23 +139,7 @@
 
         function drawline1(ctx){
             drawline[currentBTN]();
-            // ctx.fillStyle = "red";
-            // line[6].notes.map((note)=> ctx.fillRect(0, height- note.time, 300, note.height) );
-            // line[7].notes.map((note)=> ctx.fillRect(300, height- note.time, 300, note.height) );
-
-            // ctx.fillStyle = "white";
-            // line[0].notes.map((note)=> ctx.fillRect(0, height- note.time, 100, note.height) );
-            // ctx.fillStyle = "blue";
-            // line[1].notes.map((note)=> ctx.fillRect(100, height- note.time, 100, note.height) );
-            // ctx.fillStyle = "white";
-            // line[2].notes.map((note)=> ctx.fillRect(200, height- note.time, 100, note.height) );
-            // ctx.fillStyle = "blue";
-            // line[3].notes.map((note)=> ctx.fillRect(300, height- note.time, 100, note.height) );
-            // ctx.fillStyle = "white";
-            // line[4].notes.map((note)=> ctx.fillRect(400, height- note.time, 100, note.height) );
-            // ctx.fillStyle = "blue";
-            // line[5].notes.map((note)=> ctx.fillRect(500, height- note.time, 100, note.height) );
-           
+            // console.log(downshift); 
         }
         function update(){
             height+=speed;
@@ -148,14 +154,16 @@
 
         let downkey;
         document.addEventListener("keydown", function (e) {
-            downkey = e.key.toUpperCase();
+            downkey = e.key.toUpperCase() + e.location;
             if(isPresetInput) return;
             
+            if(Unshift.hasOwnProperty(downkey)) downkey = Unshift[downkey];
             if(stop && preset[currentBTN].includes(downkey)){ //멈춤상태, 입력==프리셋키
                 onliveshow()
             }
+            
             console.log(downkey);
-            if(downkey == '66') {}
+            
 
             if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
             if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
@@ -165,7 +173,7 @@
             if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
             if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
             if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
-            if(downkey == 'ESCAPE') {  //esc
+            if(downkey == 'ESCAPE0') {  //esc
                 escapeStop();
             }
             
@@ -180,8 +188,10 @@
         let upkey;
         document.addEventListener("keyup", function (e) {
             if(isPresetInput) return;
-
-            upkey = e.key.toUpperCase();            
+            upkey = e.key.toUpperCase() + e.location;
+   
+            if(Unshift.hasOwnProperty(upkey)) upkey = Unshift[upkey]; //shift안누른 키로처리
+                        
             for(let i = 0; i < 8 ; i++){
             
                 if(upkey == preset[currentBTN][i]) keyup(line[i]);

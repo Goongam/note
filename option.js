@@ -1,6 +1,6 @@
 
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
-    preset, currentBTN, changePreset, escapeStop} from "./field.js"
+    preset, currentBTN, changePreset, escapeStop, Unshift} from "./field.js"
 
 
 const text = document.createTextNode("\u00A0");    
@@ -56,9 +56,11 @@ presetTag.onclick = function(e){
 }
 
 function presetInputFunc(e){
-    let inputkey = e.key.toUpperCase();
-    if (inputkey != "ESCAPE"){
-        changingBTN.innerText = (inputkey === ' ' ? "SPACEBAR" : inputkey);
+    let inputkey = e.key.toUpperCase() + e.location;
+    if(Unshift.hasOwnProperty(inputkey)) inputkey = Unshift[inputkey];
+
+    if (inputkey != "ESCAPE0"){
+        changingBTN.innerText = (inputkey === ' 0' ? "SPACEBAR" : inputkey.slice(0,-1));
         changePreset(changingIndex, inputkey);
     }
     
@@ -84,22 +86,22 @@ presetTag.onmouseleave = function(e){
     }
 }
 
-const p4 = document.getElementById("p4");
-for(let i = 0; i < p4.childElementCount ; i++){
-    p4.children[i].innerText = preset[4][i];
+const p4 = document.getElementsByClassName("p4_btn");
+for(let i = 0; i < p4.length ; i++){
+    p4[i].innerText = preset[4][i].slice(0,-1);
 }
-const p5 = document.getElementById("p5");
-for(let i = 0; i < p5.childElementCount ; i++){
-    p5.children[i].innerText = preset[5][i];
+const p5 = document.getElementsByClassName("p5_btn");
+for(let i = 0; i < p5.length ; i++){
+    p5[i].innerText = preset[5][i].slice(0,-1);
 }
-const p6 = document.getElementById("p6");
-for(let i = 0; i < p6.childElementCount ; i++){
-    p6.children[i].innerText = preset[6][i];
+const p6 = document.getElementsByClassName("p6_btn");
+for(let i = 0; i < p6.length ; i++){
+    p6[i].innerText = preset[6][i].slice(0,-1);
 }
 const p8 = document.getElementsByClassName("p8_btn");
 for(let i = 0; i < p8.length ; i++){
-    if(preset[8][i] === ' ') p8[i].innerText = "SPACEBAR";
-    else p8[i].innerText = preset[8][i];
+    if(preset[8][i] === ' 0') p8[i].innerText = "SPACEBAR";
+    else p8[i].innerText = preset[8][i].slice(0,-1);
 }
 
 

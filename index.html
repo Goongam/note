@@ -6,7 +6,7 @@
   }
   #container{
     margin: 0 auto;
-    width: 700px;
+    width: 600px;
     
   }
   .item{
@@ -22,7 +22,7 @@
     text-align: center;
   }
   
-  
+  /* 키 바꾸기 입력 폼 */
   #presetInput{
     position: absolute;
     width: 100%;
@@ -40,49 +40,69 @@
     font-size: 30px;
     text-align: center;
   }
+
+  /* 일반노트 */
   #preset > div > button{
     background-color: white;
     color: black;
-    border: 1px solid black;
+    border: 1px solid gray;
   }
   #preset > div > button:hover{
     background-color: aliceblue;
   }
-  #preset > #p4 > button{
+  #preset > #p4 > button:not(.side){
     margin-right: -7px;
-    width: 152px;
+    width: 25.3%;
     position: relative;
-    left: -1px;  
+     
   }
-  #preset > #p5 > button{
+  #preset > #p5 > button:not(.side){
     margin-right: -7px;
-    width: 102px;
+    width: 16.95%;
     position: relative;
-    left: -2px;    
+    
   }
-  #preset > #p6 > button{
+  #preset > #p6 > button:not(.side){
     margin-right: -7px;
-    width: 102px;
+    width: 16.95%;
     position: relative;
-    left: -2px;    
+      
   }
-  #preset > #p8 > button{
+  #preset > #p8 > button:not(.side){
     margin-right: -7px;
     /* line-height: 20px; */
-    width: 102px;
+    width: 16.95%;
     position: relative;
-    left: -2px;
+    left: -0px;
    
   }
   #preset > #p8 > button:not(.trigger){
     /* line-height: 20px; */
-    top : 4px;
+    top : 3.5px;
 
   }
+  /* 트리거키 */
   #preset > #p8 > button.trigger{
     /* line-height: 20px; */
-    width: 303px;
-
+    width: 50.4%;
+    border: 1px solid red;
+    left: 0px;
+  }
+  /* 사이드키 */
+  #preset > div > button.side{
+    
+    margin-right: -7px;
+    width: 50.4%;
+    position: relative;
+    top: 3px;
+    border: 1px solid aqua;
+  }
+  #preset > #p8 > button.side{
+    
+    margin-right: -7px;
+    width: 50.4%;
+    position: relative;
+    top: 8px;
   }
   
 </style>
@@ -120,40 +140,52 @@
     <br>
     <div id="preset" >
       <div id="p4" style="display: block;">
-        <button value='0' disabled="true" class="p4_btn">-</button>
-        <button value='1' disabled="true" class="p4_btn">-</button>
+        <button value='0' disabled="true" class="p4_btn side">-</button>
+        <button value='1' disabled="true" class="p4_btn side">-</button><br>
+
         <button value='2' disabled="true" class="p4_btn">-</button>
-        <button value='3' disabled="true" class="p4_btn">-</button><br>
+        <button value='3' disabled="true" class="p4_btn">-</button>
+        <button value='4' disabled="true" class="p4_btn">-</button>
+        <button value='5' disabled="true" class="p4_btn">-</button><br>
       </div>
 
       <div id="p5" style="display: none;">
-        <button value='0' disabled="true" class="p5_btn">-</button>
-        <button value='1' disabled="true" class="p5_btn">-</button>
+        <button value='0' disabled="true" class="p5_btn side">-</button>
+        <button value='1' disabled="true" class="p5_btn side">-</button><br>
+
         <button value='2' disabled="true" class="p5_btn">-</button>
         <button value='3' disabled="true" class="p5_btn">-</button>
         <button value='4' disabled="true" class="p5_btn">-</button>
-        <button value='5' disabled="true" class="p5_btn">-</button><br>
+        <button value='5' disabled="true" class="p5_btn">-</button>
+        <button value='6' disabled="true" class="p5_btn">-</button>
+        <button value='7' disabled="true" class="p5_btn">-</button><br>
       </div>
 
       <div id="p6" style="display: none;">
-        <button value='0' disabled="true" class="p6_btn">-</button>
-        <button value='1' disabled="true" class="p6_btn">-</button>
+        <button value='0' disabled="true" class="p6_btn side">-</button>
+        <button value='1' disabled="true" class="p6_btn side">-</button><br>
+
         <button value='2' disabled="true" class="p6_btn">-</button>
         <button value='3' disabled="true" class="p6_btn">-</button>
         <button value='4' disabled="true" class="p6_btn">-</button>
-        <button value='5' disabled="true" class="p6_btn">-</button><br>
+        <button value='5' disabled="true" class="p6_btn">-</button>
+        <button value='6' disabled="true" class="p6_btn">-</button>
+        <button value='7' disabled="true" class="p6_btn">-</button><br>
       </div>
 
       <div id="p8" style="display: none;">
-        
-        <button value='0' disabled="true" class="p8_btn">-</button>
-        <button value='1' disabled="true" class="p8_btn">-</button>
+        <button value='0' disabled="true" class="p8_btn side">-</button>
+        <button value='1' disabled="true" class="p8_btn side">-</button><br>
+
         <button value='2' disabled="true" class="p8_btn">-</button>
         <button value='3' disabled="true" class="p8_btn">-</button>
         <button value='4' disabled="true" class="p8_btn">-</button>
-        <button value='5' disabled="true" class="p8_btn">-</button><br>
-        <button value='6' disabled="true" class="p8_btn trigger">-</button>
-        <button value='7' disabled="true" class="p8_btn trigger">-</button><br>
+        <button value='5' disabled="true" class="p8_btn">-</button>
+        <button value='6' disabled="true" class="p8_btn">-</button>
+        <button value='7' disabled="true" class="p8_btn">-</button><br>
+        <button value='8' disabled="true" class="p8_btn trigger">-</button>
+        <button value='9' disabled="true" class="p8_btn trigger">-</button><br>
+        
         
       </div>
     </div>

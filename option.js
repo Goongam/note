@@ -39,7 +39,7 @@ btnlist.onclick = function(e){
 
 //프리셋 설정 이벤트
 export let isPresetInput = false;
-let changingIndex = 0; //바꾸는 버튼의 index
+let changingIndex = 0; //바꾸려는 버튼의 index
 let changingBTN = null;
 const presetTag = document.getElementById("preset");
 const presetInputTag = document.getElementById("presetInput");
@@ -86,6 +86,7 @@ presetTag.onmouseleave = function(e){
     }
 }
 
+//초기 버튼 프리셋
 const p4 = document.getElementsByClassName("p4_btn");
 for(let i = 0; i < p4.length ; i++){
     p4[i].innerText = preset[4][i].slice(0,-1);

@@ -8,13 +8,13 @@
         let currentBTN = 4;
 
         let preset = {
-            4:['A0','S0',';0','\'0'],
-            5:['A0','S0','D0','L0',';0','\'0'],
-            6:['A0','S0','D0','L0',';0','\'0'],
-            8:['Q0','W0','E0','70','80','90',' 0','ARROWRIGHT0']
+            4:['SHIFT1','SHIFT2','A0','S0',';0','\'0'],
+            5:['SHIFT1','SHIFT2','A0','S0','D0','L0',';0','\'0'],
+            6:['SHIFT1','SHIFT2','A0','S0','D0','L0',';0','\'0'],
+            8:['CAPSLOCK0','+3','Q0','W0','E0','73','83','93',' 0','ARROWRIGHT0']
         }
-        let downshift = false;
-        let Unshift = {
+        //let downshift = false;
+        const Unshift = {
             ":0":";0",
             "\"0":"'0",
             "<0":",0",
@@ -64,7 +64,7 @@
             presstime= 0;
         }
         let line = [];
-        for(let i = 0; i < 8; i++){
+        for(let i = 0; i < 10; i++){
             line.push(new key());
         }
 
@@ -164,15 +164,16 @@
             
             console.log(downkey);
             
-
             if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
             if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
             if(downkey == preset[currentBTN][2]) {line[2].keydown = true;}
             if(downkey == preset[currentBTN][3]) {line[3].keydown = true;}
-            if(downkey == preset[currentBTN][4] && currentBTN != 4) {line[4].keydown = true;}
-            if(downkey == preset[currentBTN][5] && currentBTN != 4) {line[5].keydown = true;}
-            if(downkey == preset[currentBTN][6] && currentBTN == 8) {line[6].keydown = true;}
-            if(downkey == preset[currentBTN][7] && currentBTN == 8) {line[7].keydown = true;}
+            if(downkey == preset[currentBTN][4]) {line[4].keydown = true;}
+            if(downkey == preset[currentBTN][5]) {line[5].keydown = true;}
+            if(downkey == preset[currentBTN][6] && currentBTN != 4) {line[6].keydown = true;}
+            if(downkey == preset[currentBTN][7] && currentBTN != 4) {line[7].keydown = true;}
+            if(downkey == preset[currentBTN][8] && currentBTN == 8) {line[8].keydown = true;}
+            if(downkey == preset[currentBTN][9] && currentBTN == 8) {line[9].keydown = true;}
             if(downkey == 'ESCAPE0') {  //esc
                 escapeStop();
             }
@@ -192,7 +193,7 @@
    
             if(Unshift.hasOwnProperty(upkey)) upkey = Unshift[upkey]; //shift안누른 키로처리
                         
-            for(let i = 0; i < 8 ; i++){
+            for(let i = 0; i < 10 ; i++){
             
                 if(upkey == preset[currentBTN][i]) keyup(line[i]);
             }

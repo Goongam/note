@@ -4,6 +4,7 @@
         let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
         
         let width = 600, default_height = 500, height = 0;
+        let isDrawDivision = false;
         //let x=300, y=25;
         let currentBTN = 4;
 
@@ -90,7 +91,7 @@
         function changeBTN(value){
             currentBTN = value;
             console.log("현재 키: "+currentBTN);
-            
+            draw();
         }
         function changePreset(changingValue, inputvalue){
             
@@ -99,13 +100,19 @@
             
             
         }
+        function changeDivision(value){
+            isDrawDivision = value;
+            draw();
+        }
+
         function escapeStop(){
             stop = true;
             canvas.height = time;
             draw();
         }
         export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
-        currentBTN, changePreset, escapeStop,Unshift, ctx, line, height}
+        currentBTN, changePreset, escapeStop,Unshift, ctx, line, height,
+         isDrawDivision,changeDivision}
 
         setInterval(function () {
             

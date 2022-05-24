@@ -57,8 +57,10 @@
     width: 25.3%;
   }
   #preset > #p5 > button{
-    width: 16.95%;
-   
+    width: 20.4%;
+  }
+  #preset > #p5 > button.mid{
+    width: 10%;
   }
   #preset > #p6 > button{
     width: 16.95%;
@@ -118,9 +120,14 @@
       <input type="range" step="1" min="1" max="80" value="40" id=longrange></input>
     </label>
 
+    <label id="divisionlabel" class="option">
+      구분선
+      <input type="checkbox" id="drawdivision"></input>
+    </label>
+
     <!-- <label id="longlabel" class="option">
       실시간 출력
-      <input type="checkbox" id="livedraw" checked="true"></input>
+      <input type="checkbox" id="livedraw" checked></input>
     </label> -->
     <div id="changekeyBTN">    
       <button class="changeBTN" value=4>4</button>
@@ -149,8 +156,8 @@
 
         <button value='2' disabled="true" class="p5_btn">-</button>
         <button value='3' disabled="true" class="p5_btn">-</button>
-        <button value='4' disabled="true" class="p5_btn">-</button>
-        <button value='5' disabled="true" class="p5_btn">-</button>
+        <button value='4' disabled="true" class="p5_btn mid">-</button>
+        <button value='5' disabled="true" class="p5_btn mid">-</button>
         <button value='6' disabled="true" class="p5_btn">-</button>
         <button value='7' disabled="true" class="p5_btn">-</button><br>
       </div>

@@ -1,6 +1,7 @@
 
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
-    preset, currentBTN, changePreset, escapeStop, Unshift} from "./field.js"
+    preset, currentBTN, changePreset, escapeStop, Unshift,
+    changeDivision} from "./field.js"
 
 
 const text = document.createTextNode("\u00A0");    
@@ -26,9 +27,15 @@ longRange.oninput = function(){
     console.log(btn)
 }
 
+const divisionTag = document.getElementById("drawdivision");
+divisionTag.onclick = function(){
+    changeDivision(this.checked);
+}
+
 //키 변경 버튼 이벤트
 const btnlist = document.getElementById("changekeyBTN");
 btnlist.onclick = function(e){
+    if(e.target.value === undefined) return;
     changeBTN(e.target.value);
     for(let i = 0; i < presetTag.childElementCount ; i++){
         presetTag.children[i].style.display = "none";

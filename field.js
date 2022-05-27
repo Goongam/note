@@ -1,9 +1,10 @@
         import {isPresetInput} from "./option.js";
         import {drawline} from "./drawline.js";
 
-        let tick = 5, speed = 4, time = 0, longnoteTime = 40, livedraw = true;
+        let tick = 5, speed = 5,  longnoteTime = 52, livedraw = true; //option
+        let width = 600, default_height = 500; //default canvas setting
         
-        let width = 600, default_height = 500, height = 0;
+        let time = 0, height = 0;
         let isDrawDivision = false;
         //let x=300, y=25;
         let currentBTN = 4;
@@ -38,19 +39,6 @@
             
         }
       
-        //let key = [];
-        // let line1 = [0];
-        // let line2 = [0];
-        // let line3 = [0];
-        // let line4 = [0];
-        // let line5 = [0];
-        // let line6 = [0];
-        // let keydown1 = false, presstime1 = 0; 
-        // let keydown2 = false, presstime2 = 0;
-        // let keydown3 = false, presstime3 = 0;
-        // let keydown4 = false, presstime4 = 0;
-        // let keydown5 = false, presstime5 = 0;
-        // let keydown6 = false, presstime6 = 0;
         let stop = true;
         const canvas = document.getElementById("field");
         canvas.width = width;
@@ -64,10 +52,9 @@
             keydown= false;
             presstime= 0;
         }
-        let line = [];
-        for(let i = 0; i < 10; i++){
-            line.push(new key());
-        }
+        let line;
+        init();
+        
 
         class note {
             constructor(time, height){
@@ -125,7 +112,15 @@
         }, tick)
 
 
-
+        function init(){
+            line = [];
+            for(let i = 0; i < 10; i++){
+                line.push(new key());
+            }
+            canvas.height = default_height;
+            height = 0;
+            time = 0;
+        }
         function draw() {
             //ctx.save();
             //canvas.height = time;
@@ -135,7 +130,6 @@
             drawline1(ctx);
             //ctx.restore();
 
-            
         }
         function pressnote(){
           
@@ -182,6 +176,11 @@
             if(downkey == preset[currentBTN][8] && currentBTN == 8) {line[8].keydown = true;}
             if(downkey == preset[currentBTN][9] && currentBTN == 8) {line[9].keydown = true;}
             if(downkey == 'ESCAPE0') {  //esc
+                if(stop) {
+                    init();
+                    draw();
+                    return;
+                }
                 escapeStop();
             }
             

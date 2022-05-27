@@ -47,13 +47,15 @@
         const ctx = canvas.getContext("2d");
         //document.body.appendChild(canvas);
 
+        let line;
+
         class key{
             notes = [0];
             keydown= false;
             presstime= 0;
         }
-        let line;
-        init();
+        
+        
         
 
         class note {
@@ -209,3 +211,6 @@
             
 
         });
+
+
+        init();

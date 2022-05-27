@@ -24,7 +24,7 @@ longRange.oninput = function(){
 
     longLabel.childNodes[0].data = "롱노트시간: "+this.value*5+"ms"
     changelong(parseInt(this.value))
-    console.log(btn)
+    
 }
 
 const divisionTag = document.getElementById("drawdivision");

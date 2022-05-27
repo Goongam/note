@@ -165,7 +165,7 @@
             
             console.log(downkey);
             
-            if(downkey == preset[currentBTN][0]) {line[0].keydown = true;}
+            if(downkey == preset[currentBTN][0]) {line[0].keydown = true;} //
             if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}
             if(downkey == preset[currentBTN][2]) {line[2].keydown = true;}
             if(downkey == preset[currentBTN][3]) {line[3].keydown = true;}
@@ -187,8 +187,11 @@
         });
 
         function keyup(line){
+            
             line.keydown = false;
-            line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed) : new note(time,15));
+            // line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed) : new note(time ,15));
+            
+            line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed) : new note(time - line.presstime*speed + 15,15));
             line.presstime = 0;
         }
 

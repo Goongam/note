@@ -2,7 +2,7 @@
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
     preset, currentBTN, changePreset, escapeStop, Unshift,
     changeDivision} from "./field.js"
-
+//
 
 const text = document.createTextNode("\u00A0");    
 

@@ -93,10 +93,19 @@ presetTag.onmouseleave = function(e){
     }
 }
 
-preset[4] = getCookie('PRESET4').split(',')
-preset[5] = getCookie('PRESET5').split(',')
-preset[6] = getCookie('PRESET6').split(',')
-preset[8] = getCookie('PRESET8').split(',')
+//초기 쿠키설정
+if(document.cookie == ''){
+    setCookie("PRESET4",preset[4],1);
+    setCookie("PRESET5",preset[5],1);
+    setCookie("PRESET6",preset[6],1);
+    setCookie("PRESET8",preset[8],1);
+}else{//설정된 쿠키 불러오기
+    preset[4] = getCookie('PRESET4').split(',')
+    preset[5] = getCookie('PRESET5').split(',')
+    preset[6] = getCookie('PRESET6').split(',')
+    preset[8] = getCookie('PRESET8').split(',')
+}
+
 //초기 버튼 프리셋
 const p4 = document.getElementsByClassName("p4_btn");
 for(let i = 0; i < p4.length ; i++){

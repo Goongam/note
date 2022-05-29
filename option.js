@@ -1,7 +1,7 @@
 
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
     preset, currentBTN, changePreset, escapeStop, Unshift,
-    changeDivision} from "./field.js"
+    changeDivision,getCookie,setCookie} from "./field.js"
 //
 
 const text = document.createTextNode("\u00A0");    
@@ -93,23 +93,33 @@ presetTag.onmouseleave = function(e){
     }
 }
 
+preset[4] = getCookie('PRESET4').split(',')
+preset[5] = getCookie('PRESET5').split(',')
+preset[6] = getCookie('PRESET6').split(',')
+preset[8] = getCookie('PRESET8').split(',')
 //초기 버튼 프리셋
 const p4 = document.getElementsByClassName("p4_btn");
 for(let i = 0; i < p4.length ; i++){
-    p4[i].innerText = preset[4][i].slice(0,-1);
+    //p4[i].innerText = preset[4][i].slice(0,-1);
+    p4[i].innerText = changeSpaceBar(preset[4][i].slice(0,-1));
 }
 const p5 = document.getElementsByClassName("p5_btn");
 for(let i = 0; i < p5.length ; i++){
-    p5[i].innerText = preset[5][i].slice(0,-1);
+    p5[i].innerText = changeSpaceBar(preset[5][i].slice(0,-1));
 }
 const p6 = document.getElementsByClassName("p6_btn");
 for(let i = 0; i < p6.length ; i++){
-    p6[i].innerText = preset[6][i].slice(0,-1);
+    p6[i].innerText = changeSpaceBar(preset[6][i].slice(0,-1));
 }
 const p8 = document.getElementsByClassName("p8_btn");
 for(let i = 0; i < p8.length ; i++){
-    if(preset[8][i] === ' 0') p8[i].innerText = "SPACEBAR";
-    else p8[i].innerText = preset[8][i].slice(0,-1);
+    p8[i].innerText = changeSpaceBar(preset[8][i].slice(0,-1));
+}
+
+function changeSpaceBar(value){
+    console.log(value)
+    if(value == ' ') return "SPACEBAR"
+    else return value
 }
 
 

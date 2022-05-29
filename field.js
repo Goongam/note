@@ -86,8 +86,11 @@
             
             preset[currentBTN][changingValue] = inputvalue;
             console.log("변경: "+preset[currentBTN])
-            
-            
+            setCookie("PRESET4",preset[4],1);
+            setCookie("PRESET5",preset[5],1);
+            setCookie("PRESET6",preset[6],1);
+            setCookie("PRESET8",preset[8],1);
+            console.log("COOKIE: "+getCookie("PRESET4"));
         }
         function changeDivision(value){
             isDrawDivision = value;
@@ -99,9 +102,26 @@
             canvas.height = time;
             draw();
         }
+
+        function setCookie(name, value, exp) {
+            let date = new Date();
+            date.setTime(date.getTime() + exp*24*60*60*1000);
+            
+            value = value.join(',').replace( /;/gi, ':');
+            document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';  
+        };
+        function deleteCookie(name) {      
+            document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';  
+        }
+        function getCookie(name) {      
+            let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2].replace( /:/gi, ';') : null;  
+        };
+        
+
         export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
         currentBTN, changePreset, escapeStop,Unshift, ctx, line, height,
-         isDrawDivision,changeDivision}
+         isDrawDivision,changeDivision,getCookie,setCookie}
 
         setInterval(function () {
             
@@ -178,9 +198,10 @@
             if(downkey == preset[currentBTN][8] && currentBTN == 8) {line[8].keydown = true;}
             if(downkey == preset[currentBTN][9] && currentBTN == 8) {line[9].keydown = true;}
             if(downkey == 'ESCAPE0') {  //esc
-                if(stop) {
+                if(stop) {//초기화
                     init();
                     draw();
+                    deleteCookie("PRESET")
                     return;
                 }
                 escapeStop();

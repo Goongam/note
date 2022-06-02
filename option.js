@@ -95,10 +95,10 @@ presetTag.onmouseleave = function(e){
 
 //초기 쿠키설정
 if(document.cookie == ''){
-    setCookie("PRESET4",preset[4],1);
-    setCookie("PRESET5",preset[5],1);
-    setCookie("PRESET6",preset[6],1);
-    setCookie("PRESET8",preset[8],1);
+    setCookie("PRESET4",preset[4],365);
+    setCookie("PRESET5",preset[5],365);
+    setCookie("PRESET6",preset[6],365);
+    setCookie("PRESET8",preset[8],365);
 }else{//설정된 쿠키 불러오기
     preset[4] = getCookie('PRESET4').split(',')
     preset[5] = getCookie('PRESET5').split(',')

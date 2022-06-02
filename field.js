@@ -86,10 +86,10 @@
             
             preset[currentBTN][changingValue] = inputvalue;
             console.log("변경: "+preset[currentBTN])
-            setCookie("PRESET4",preset[4],1);
-            setCookie("PRESET5",preset[5],1);
-            setCookie("PRESET6",preset[6],1);
-            setCookie("PRESET8",preset[8],1);
+            setCookie("PRESET4",preset[4],365);
+            setCookie("PRESET5",preset[5],365);
+            setCookie("PRESET6",preset[6],365);
+            setCookie("PRESET8",preset[8],365);
             console.log("COOKIE: "+getCookie("PRESET4"));
         }
         function changeDivision(value){

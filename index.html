@@ -22,6 +22,20 @@
     text-align: center;
   }
   
+  canvas{
+    border: 1px white solid;
+                /*상  우  하  좌 */
+    border-width: 0px 1px 0px 1px; 
+  }
+  #cv-container > canvas{
+    border-bottom: 1px red solid;
+  }
+  #copy-cv-container > canvas:last-child{
+    border-bottom: 1px white solid;
+  }
+  #copy-cv-container{
+    display: none;
+  }
   /* 키 바꾸기 입력 폼 */
   #presetInput{
     position: absolute;
@@ -192,10 +206,8 @@
     </div>
     
     
-    <div id="cv-container">
-      <canvas id="field"></canvas>
-    </div>
-    
+    <div id="cv-container"><canvas id="field"></canvas></div>
+    <div id="copy-cv-container"></div>
     <!-- <script src = "field.js" type="module" async></script> -->
   
 <!-- import 관련 https://www.inflearn.com/questions/27444 -->

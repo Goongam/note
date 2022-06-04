@@ -9,7 +9,7 @@ let isDrawDivision = false;
 //let x=300, y=25;
 let currentBTN = 4;
 
-const ctxDivisionHeight = 10000;
+const ctxDivisionHeight = 100000;
 
 let preset = {
     4:['SHIFT1','SHIFT2','A0','S0',';0','\'0'],
@@ -90,6 +90,7 @@ function changelivedraw(value){
 function changeBTN(value){
     currentBTN = value;
     console.log("현재 키: "+currentBTN);
+    setCookie("BTN",currentBTN,365);
     draw();
 }
 function changePreset(changingValue, inputvalue){
@@ -104,6 +105,7 @@ function changePreset(changingValue, inputvalue){
 }
 function changeDivision(value){
     isDrawDivision = value;
+    setCookie("DivisionLine",isDrawDivision,365);
     draw();
 }
 
@@ -137,7 +139,9 @@ function setCookie(name, value, exp) {
     let date = new Date();
     date.setTime(date.getTime() + exp*24*60*60*1000);
     
-    value = value.join(',').replace( /;/gi, ':');
+    if(Array.isArray(value))
+        value = value.join(',').replace( /;/gi, ':');
+ 
     document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';  
 };
 function deleteCookie(name) {      
@@ -272,8 +276,6 @@ let upkey;
 document.addEventListener("keyup", function (e) {
     if(isPresetInput) return;
     upkey = e.key.toUpperCase() + e.location;
-
-    console.log("up:"+upkey)
 
     if(Unshift.hasOwnProperty(upkey)) upkey = Unshift[upkey]; //shift안누른 키로처리
                 

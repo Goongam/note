@@ -1,7 +1,7 @@
 
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
     preset, currentBTN, changePreset, escapeStop, Unshift,
-    changeDivision,getCookie,setCookie} from "./field.js"
+    changeDivision,getCookie,setCookie,isDrawDivision} from "./field.js"
 //
 
 const text = document.createTextNode("\u00A0");    
@@ -99,11 +99,24 @@ if(document.cookie == ''){
     setCookie("PRESET5",preset[5],365);
     setCookie("PRESET6",preset[6],365);
     setCookie("PRESET8",preset[8],365);
+    setCookie("BTN",currentBTN,365);
+    setCookie("DivisionLine",isDrawDivision,365);
 }else{//설정된 쿠키 불러오기
     preset[4] = getCookie('PRESET4').split(',')
     preset[5] = getCookie('PRESET5').split(',')
     preset[6] = getCookie('PRESET6').split(',')
     preset[8] = getCookie('PRESET8').split(',')
+    //버튼불러오기
+    changeBTN(getCookie('BTN'));
+    for(let i = 0; i < presetTag.childElementCount ; i++){
+        presetTag.children[i].style.display = "none";
+        if(presetTag.children[i].id === ("p"+currentBTN))
+            presetTag.children[i].style.display = "block";
+    }
+
+    //구분선
+    changeDivision(JSON.parse(getCookie('DivisionLine')));
+    if(isDrawDivision) divisionTag.checked = true;
 }
 
 //초기 버튼 프리셋
@@ -126,7 +139,6 @@ for(let i = 0; i < p8.length ; i++){
 }
 
 function changeSpaceBar(value){
-    console.log(value)
     if(value == ' ') return "SPACEBAR"
     else return value
 }

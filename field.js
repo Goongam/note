@@ -9,7 +9,7 @@ let isDrawDivision = false;
 //let x=300, y=25;
 let currentBTN = 4;
 
-const ctxDivisionHeight = 100000;
+const ctxDivisionHeight = 40000;
 
 let preset = {
     4:['SHIFT1','SHIFT2','A0','S0',';0','\'0'],
@@ -45,16 +45,19 @@ const Unshift = {
 }
 
 let stop = true;
+
+let ctx, canvas;
 const cv_con = document.getElementById("cv-container");
 const copy_cv_con = document.getElementById("copy-cv-container");
 
-let canvas = document.getElementById("field");
-canvas.width = width;
-canvas.height = default_height;
-//canvas.style.border = "1px solid white";
-let ctx = canvas.getContext("2d");
-//document.body.appendChild(canvas);
-ctxList.push(ctx);
+// let canvas = document.getElementById("field");
+// canvas.width = width;
+// canvas.height = default_height;
+// //canvas.style.border = "1px solid white";
+// let ctx = canvas.getContext("2d");
+// //document.body.appendChild(canvas);
+// ctxList.push(ctx);
+
 
 let line;
 
@@ -155,7 +158,7 @@ function getCookie(name) {
 
 export {changeSpeed,changelong,changelivedraw,changeBTN,preset,
 currentBTN, changePreset, escapeStop,Unshift, ctx, line, height,
- isDrawDivision,changeDivision,getCookie,setCookie, ctxList}
+ isDrawDivision,changeDivision,getCookie,setCookie, ctxList,stop}
 
 setInterval(function () {
     
@@ -169,13 +172,27 @@ setInterval(function () {
 
 
 function init(){
+    while(copy_cv_con.hasChildNodes()){
+        copy_cv_con.removeChild(copy_cv_con.firstChild);
+    }
+    while(cv_con.hasChildNodes()){
+        cv_con.removeChild(cv_con.firstChild);
+    }
+    ctxList = [];
+    canvas = document.createElement("canvas"); //첫 캔버스 생성
+    canvas.width = width;
+    canvas.height = default_height;
+    ctx = canvas.getContext("2d");
+    cv_con.prepend(canvas);
+    ctxList.push(ctx);  //첫 캔버스 생성
+
     line = [];
     for(let i = 0; i < 10; i++){
         line.push(new key());
     }
-    canvas.height = default_height;
     height = 0;
     time = 0;
+
 }
 function draw() {
     //ctx.save();
@@ -250,12 +267,12 @@ document.addEventListener("keydown", function (e) {
     if(downkey == preset[currentBTN][9] && currentBTN == 8) {line[9].keydown = true;}
     if(downkey == 'ESCAPE0') {  //esc
         if(stop) {//초기화
+            
             init();
             draw();
             //deleteCookie("PRESET")
-            while(copy_cv_con.hasChildNodes()){
-                copy_cv_con.removeChild(copy_cv_con.firstChild);
-            }
+            
+            
             return;
         }
         escapeStop();

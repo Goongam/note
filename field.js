@@ -121,7 +121,7 @@ function makeNewCtx(){
     height = 0;
     canvas = document.createElement("canvas");
     canvas.width = width;
-    canvas.height = default_height;
+    canvas.height = 0;
     ctx = canvas.getContext("2d");
     cv_con.prepend(canvas);
     ctxList.push(ctx);
@@ -239,7 +239,7 @@ function isAllLineNoKeyDown(){
 
 function onliveshow(){
     stop = false;
-    canvas.height = 500;
+    canvas.height = default_height;
     copy_cv_con.style.display = "none";
 }
 
@@ -253,7 +253,7 @@ document.addEventListener("keydown", function (e) {
         onliveshow()
     }
     
-    console.log(downkey);
+    //console.log(downkey);
     
     if(downkey == preset[currentBTN][0]) {line[0].keydown = true;} //
     if(downkey == preset[currentBTN][1]) {line[1].keydown = true;}

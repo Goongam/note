@@ -121,7 +121,7 @@ function makeNewCtx(){
     height = 0;
     canvas = document.createElement("canvas");
     canvas.width = width;
-    canvas.height = 0;
+    canvas.height = stop ? 0 : default_height;
     ctx = canvas.getContext("2d");
     cv_con.prepend(canvas);
     ctxList.push(ctx);

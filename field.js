@@ -8,6 +8,7 @@ let time = 0, height = 0;
 let isDrawDivision = false;
 //let x=300, y=25;
 let currentBTN = 4;
+let stop = true;
 
 const ctxDivisionHeight = 40000;
 
@@ -19,6 +20,7 @@ let preset = {
 }
 
 let ctxList = []
+let line;
 
 //let downshift = false;
 const Unshift = {
@@ -44,7 +46,7 @@ const Unshift = {
     
 }
 
-let stop = true;
+
 
 let ctx, canvas;
 const cv_con = document.getElementById("cv-container");
@@ -59,7 +61,7 @@ const copy_cv_con = document.getElementById("copy-cv-container");
 // ctxList.push(ctx);
 
 
-let line;
+
 
 class key{
     notes = [];
@@ -104,7 +106,7 @@ function changePreset(changingValue, inputvalue){
     setCookie("PRESET5",preset[5],365);
     setCookie("PRESET6",preset[6],365);
     setCookie("PRESET8",preset[8],365);
-    console.log("COOKIE: "+getCookie("PRESET4"));
+    //console.log("COOKIE: "+getCookie("PRESET4"));
 }
 function changeDivision(value){
     isDrawDivision = value;
@@ -201,25 +203,21 @@ function draw() {
     ctx.fillRect(0, 0, width, canvas.height);  //지우기
     
     if(stop){
-        ctxList.map((ctx)=>ctx.fillStyle = "black");
-        ctxList.map((ctx)=>ctx.fillRect(0, 0, width, ctx.canvas.height));
+        ctxList.forEach((ctx)=>ctx.fillStyle = "black");
+        ctxList.forEach((ctx)=>ctx.fillRect(0, 0, width, ctx.canvas.height));
     }
 
     drawline1(ctx);
     //ctx.restore();
 
 }
-function pressnote(){
-  
-    line.map((li) => {
-        if(li.keydown) li.presstime++
-    });
-}
 
 function drawline1(ctx){
     drawline[currentBTN]();
     // console.log(downshift); 
 }
+
+
 function update(){
     height+=speed;
     time += speed;
@@ -231,10 +229,15 @@ function update(){
     }
 }
 
+function pressnote(){
+  
+    line.forEach((li) => {
+        if(li.keydown) li.presstime++
+    });
+}
+
 function isAllLineNoKeyDown(){
-    let b = true;
-    line.map((l)=> {if(l.keydown) b = false});
-    return b;
+    return !(line.some((l)=> l.keydown)); //하나라도 TRUE가 있다면 FALSE RETURN
 }
 
 function onliveshow(){
@@ -281,10 +284,7 @@ document.addEventListener("keydown", function (e) {
 });
 
 function keyup(line){
-    
-    line.keydown = false;
-    // line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed) : new note(time ,15));
-    
+    line.keydown = false; 
     line.notes.push(line.presstime > longnoteTime ? new note(time,line.presstime * speed,ctx) : new note(time - line.presstime*speed + 15,15,ctx));
     line.presstime = 0;
 }

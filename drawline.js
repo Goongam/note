@@ -2,7 +2,7 @@ import {line,height,isDrawDivision, ctxList,ctx,stop} from "./field.js";
 
 let drawingCTX;
 
-let drawline = {
+const drawline = {
     4: line4,
     5: line5,
     6: line6,

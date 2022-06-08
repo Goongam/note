@@ -237,7 +237,7 @@ function pressnote(){
 }
 
 function isAllLineNoKeyDown(){
-    return !(line.some((l)=> l.keydown)); //하나라도 TRUE가 있다면 FALSE RETURN
+    return line.every((l)=> l.keydown === false); //모두 false라면 true return
 }
 
 function onliveshow(){

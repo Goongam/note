@@ -51,7 +51,7 @@ let changingBTN = null;
 const presetTag = document.getElementById("preset");
 const presetInputTag = document.getElementById("presetInput");
 presetTag.onclick = function(e){
-        
+    if(e.target.value === undefined) return; //허공 클릭
     // console.log(preset[currentBTN][e.target.value])
     changingBTN = e.target;
     changingIndex = e.target.value;

@@ -114,6 +114,7 @@
     width: 50.4%;
     top: 7px;
   }
+
   
 </style>
 <head>
@@ -140,6 +141,23 @@
       <input type="checkbox" id="drawdivision"></input>
     </label>
 
+    <label id="notetypelabel" class="option">
+      노트타입
+      <div align="left">
+        <label id="notetypelabel1">
+          <input type="radio" class="notetyperadio" name="notetype" value="square" checked> □
+        </label>
+           
+        <label id="notetypelabel2" style="position: relative; left:30px">
+          <input type="radio" class="notetyperadio" name="notetype" value="circle"> ○
+        </label>
+
+        <label id="notesizelabel" style="position: relative; left:50px">
+          노트크기
+          <input type="range" id="notesize" value="50" min="1" max="50"  disabled="true">
+        </label>
+      </div>
+    </label>
     <!-- <label id="longlabel" class="option">
       실시간 출력
       <input type="checkbox" id="livedraw" checked></input>

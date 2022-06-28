@@ -2,7 +2,12 @@
 import {changeSpeed,changelong,changelivedraw, changeBTN, 
     preset, currentBTN, changePreset, escapeStop, Unshift,
     changeDivision,getCookie,setCookie,isDrawDivision} from "./field.js"
-//
+
+import { changeNoteSize } from "./drawline.js";
+
+
+export let noteType = "square";
+//export let noteSize = 30;
 
 const text = document.createTextNode("\u00A0");    
 
@@ -31,6 +36,23 @@ const divisionTag = document.getElementById("drawdivision");
 divisionTag.onclick = function(){
     changeDivision(this.checked);
 }
+
+//노트타입
+const notetypeTag = document.querySelectorAll(".notetyperadio");
+const notesizeTag = document.querySelector("#notesize");
+notetypeTag.forEach((radio)=>{
+    radio.addEventListener("click",(e)=>{
+        noteType = e.target.value;
+        if(noteType === "circle")  notesizeTag.disabled= false;
+        else notesizeTag.disabled = true;
+        console.log("현재 노트타입:"+noteType);
+    });
+});
+
+notesizeTag.oninput = function(){
+    changeNoteSize(notesizeTag.value)
+}
+
 
 //키 변경 버튼 이벤트
 const btnlist = document.getElementById("changekeyBTN");

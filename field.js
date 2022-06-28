@@ -117,6 +117,7 @@ function changeDivision(value){
 
 function makeNewCtx(){
     canvas.height = height;
+    // if(copy_cv_con.childElementCount == 0) canvas.height = 1000;
     copy_cv_con.prepend(canvas);
 
     time = 0;

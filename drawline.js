@@ -159,9 +159,9 @@ function line5(){
         line[2].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*0 , heightOriginOrCopy(note), "white"));
         line[3].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*1, heightOriginOrCopy(note), "blue"));
         line[4].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*2, heightOriginOrCopy(note),"white"));
-        line[5].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*2, heightOriginOrCopy(note), "white"));
-        line[6].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*3, heightOriginOrCopy(note), "blue"));
-        line[7].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*4, heightOriginOrCopy(note), "white"));
+        line[5].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*2, heightOriginOrCopy(note), "blue"));
+        line[6].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*3, heightOriginOrCopy(note), "white"));
+        line[7].notes.filter((note)=>isCurrentCTX(note.ctx)).forEach((note)=> drawcircle(note, NOTE_WIDTH[currentBTN]*4, heightOriginOrCopy(note), "blue"));
     }
 
     
